@@ -133,7 +133,12 @@
     <select id="selectSaleCount" resultType="int" parameterType="int">
         SELECT SUM(productOrderItem_number) FROM productOrderItem WHERE productOrderItem_product_id = #{product_id}
     </select>
-
+    <!-- namespace = com.xq.tmall.dao.ProductOrderItemMapper，命名空间值对应持久层dao接口类全限定名，用来匹配扫描接口使用。 -->
+    <!-- id = getTotalByProductId，唯一id值对应方法名，用来锁定唯一调用方法。 -->
+    <!-- resultType = com.xq.tmall.entity.OrderGroup 或者 orderGroup ，返回值类型值可以是类全限定名或者首字母小写类名 -->
+    <!-- resultMap =  -->
+    <!-- parameterType = int、com.xq.tmall.util.PageUtil 等命名方式，参数类型值根据调用方法的参数形式而变化，可为基本类型、类全限定名、不填等。
+     其中不填即为存在多种不同类型参数时使用，可对多个传参封装成类使用。 -->
     <select id="getTotalByProductId" resultType="orderGroup">
         SELECT
         productOrder.productOrder_pay_date as productOrder_pay_date,count(productOrder.productOrder_id) as productOrder_count,productOrder.productOrder_status from productOrderItem,productOrder
